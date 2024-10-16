@@ -1,0 +1,192 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="CSS Grid Avanzado | David Kurax">
+  <main>
+    <h1>Grid</h1>
+
+    <section class="grid-examples">
+      <!-- Ejemplo básico existente -->
+      <div class="grid-container example2">
+        <div class="item">Header</div>
+        <div class="item">Sidebar</div>
+        <div class="item">Main Content</div>
+        <div class="item">Footer</div>
+      </div>
+
+      <h2>2. Grid Complejo con Áreas</h2>
+      <p>Un layout usando <code>grid-template-areas</code> para estructurar el contenido.</p>
+
+      <pre><code class="language-css">
+.grid-container &#123;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  gap: 10px;
+&#125;
+
+.item:nth-child(1) &#123; grid-area: header; &#125;
+.item:nth-child(2) &#123; grid-area: sidebar; &#125;
+.item:nth-child(3) &#123; grid-area: main; &#125;
+.item:nth-child(4) &#123; grid-area: footer; &#125;
+      </code></pre>
+
+      <h2>3. Ejemplo: Auto-Placement y Grid Implícito</h2>
+      <p>Colocación automática de elementos en un grid sin definir explícitamente las áreas.</p>
+
+      <div class="grid-container auto-placement">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+        <div class="item">Item 4</div>
+        <div class="item">Item 5</div>
+      </div>
+
+      <pre><code class="language-css">
+.grid-container &#123;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+&#125;
+      </code></pre>
+
+      <h2>4. Ejemplo: Subgrid</h2>
+      <p>Uso de subgrid para heredar el grid del contenedor padre.</p>
+
+      <div class="grid-container subgrid-example">
+        <div class="parent-grid">
+          <div class="child-grid">Subgrid Item 1</div>
+          <div class="child-grid">Subgrid Item 2</div>
+        </div>
+      </div>
+
+      <pre><code class="language-css">
+.parent-grid &#123;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+&#125;
+
+.child-grid &#123;
+  display: subgrid;
+  grid-template-columns: inherit;
+&#125;
+      </code></pre>
+
+      <h2>5. Ejemplo: Grid Responsivo</h2>
+      <p>Un grid que cambia la disposición de los elementos según el tamaño de la pantalla.</p>
+
+      <div class="grid-container responsive-grid">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+        <div class="item">Item 4</div>
+      </div>
+
+      <pre><code class="language-css">
+.grid-container &#123;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+&#125;
+
+@media (min-width: 768px) &#123;
+  .grid-container &#123;
+    grid-template-columns: repeat(4, 1fr);
+  &#125;
+&#125;
+      </code></pre>
+    </section>
+
+    <a href="/">Volver al Inicio</a>
+  </main>
+</Layout>
+
+<style>
+  main {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .grid-container {
+    display: grid;
+    gap: 10px;
+    background-color: #161b22;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .example2 {
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+  }
+
+  .auto-placement {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .subgrid-example .parent-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+  }
+
+  .subgrid-example .child-grid {
+    display: subgrid;
+    grid-template-columns: inherit;
+  }
+
+  .responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 768px) {
+    .responsive-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .item {
+    background-color: #58a6ff;
+    color: #0d1117;
+    text-align: center;
+    padding: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+
+  a {
+    margin-top: 2rem;
+    display: inline-block;
+    text-decoration: none;
+    color: #58a6ff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #1f6feb;
+  }
+
+  pre {
+    background-color: #282c34;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+
+  code {
+    font-family: 'Fira Code', monospace;
+    color: #61dafb;
+  }
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />

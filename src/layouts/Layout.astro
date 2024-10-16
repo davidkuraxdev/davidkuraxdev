@@ -1,0 +1,66 @@
+---
+interface Props {
+	title: string;
+  description?: string;
+  keywords?: string[];
+  author?: string;
+}
+
+const { title, author, description, keywords } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+    <meta name="description" content={description || "David Kurax's developer portfolio. Showcasing projects, skills, and experience in web development, programming, and software solutions."} />
+    <meta name="keywords" content={keywords?.join(", ") || "David Kurax, developer, portfolio, web development, software engineer, frontend developer, backend developer, full stack developer, programming"} />
+    <meta name="author" content={author || "David Kurax"} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description || "Explore David Kurax's portfolio. Discover projects, skills, and expertise in web development and programming."} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://davidkuraxdev.com" />
+    <meta property="og:image" content="https://davidkuraxdev.com/og-image.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description || "Explore David Kurax's portfolio in web development and programming."} />
+    <meta name="twitter:image" content="https://davidkuraxdev.com/og-image.png" />
+    <meta name="twitter:creator" content="@davidkuraxdev" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://davidkuraxdev.com" />
+    <title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 136, 58, 234;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 30%,
+			white 60%
+		);
+	}
+
+	html {
+		font-family: system-ui, sans-serif;
+		background: #13151a;
+		color: #fff;
+	}
+
+	body {
+		@apply grid place-content-center p-20;
+	}
+
+	body > div {
+		@apply container;
+	}
+</style>

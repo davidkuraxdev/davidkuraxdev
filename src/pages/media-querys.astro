@@ -1,0 +1,132 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Media Queries Avanzadas | David Kurax">
+  <main>
+    <h1>Media Queries</h1>
+
+    <section class="grid-examples">
+      <h2>1. Media Queries Responsivas y Orientación</h2>
+      <p>Detecta la orientación del dispositivo y adapta el diseño:</p>
+
+      <pre><code class="language-css">
+        @media (orientation: portrait) &#123;
+          .media-query-container &#123;
+            flex-direction: column;
+          &#125;
+        &#125;
+
+        @media (orientation: landscape) &#123;
+          .media-query-container &#123;
+            flex-direction: row;
+          &#125;
+        &#125;
+      </code></pre>
+
+      <h2>2. Optimización para Conexiones Lentas</h2>
+      <p>Ajusta estilos cuando se detecta una conexión lenta:</p>
+
+      <pre><code class="language-css">
+      @media (prefers-reduced-data: reduce) &#123;
+        img &#123;
+          display: none;
+        &#125;
+        .media-query-container &#123;
+          background-color: #444;
+        &#125;
+      &#125;
+      </code></pre>
+
+      <h2>3. Detectando Viewports Dinámicos</h2>
+      <p>Usamos unidades dinámicas para mejorar la adaptación a navegadores modernos:</p>
+
+      <pre><code class="language-css">
+      :root &#123;
+        --vh: 1vh;
+      &#125;
+
+      @media (max-width: 768px) &#123;
+        .media-query-container &#123;
+          height: calc(100 * var(--vh));
+        &#125;
+      &#125;
+      </code></pre>
+    </section>
+
+    <a href="/">Volver al Inicio</a>
+  </main>
+</Layout>
+
+<style>
+  main {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .media-query-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: #161b22;
+    padding: 2rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .responsive-button {
+    background-color: #58a6ff;
+    color: #0d1117;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .responsive-button:hover {
+    background-color: #1f6feb;
+  }
+
+  pre {
+    background-color: #282c34;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+  }
+
+  code {
+    font-family: 'Fira Code', monospace;
+    color: #61dafb;
+  }
+
+  a {
+    margin-top: 2rem;
+    display: inline-block;
+    text-decoration: none;
+    color: #58a6ff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #1f6feb;
+  }
+
+  /* Unidades dinámicas */
+  :root {
+    --vh: 1vh;
+  }
+
+  @media (max-width: 768px) {
+    .media-query-container {
+      height: calc(100 * var(--vh));
+    }
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />

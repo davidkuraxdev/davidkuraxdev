@@ -1,0 +1,106 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="David Kurax | Developer Portfolio">
+  <main>
+    <header class="hero">
+      <h1>Hola, soy <span>David Kurax</span> 👨‍💻</h1>
+      <p>Desarrollador apasionado por crear experiencias digitales únicas.</p>
+    </header>
+
+    <section class="bento-grid">
+      <a href="/grid" class="grid-item">
+        <div class="overlay"></div>
+        <h2>Proyectos Grid</h2>
+        <p>Explora mi trabajo con layouts de Grid.</p>
+      </a>
+
+      <a href="/media-querys" class="grid-item">
+        <div class="overlay"></div>
+        <h2>Media Queries</h2>
+        <p>Ejemplos responsivos usando media queries.</p>
+      </a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  :global(body) {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d1117;
+    color: #c9d1d9;
+  }
+
+  main {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #58a6ff;
+  }
+
+  .hero h1 span {
+    color: #1f6feb;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: #8b949e;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .grid-item {
+    position: relative;
+    background-color: #161b22;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .grid-item h2 {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.5rem;
+    color: #58a6ff;
+  }
+
+  .grid-item p {
+    margin: 0 0 1.5rem;
+    color: #8b949e;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, rgba(31, 111, 235, 0.9), rgba(88, 166, 255, 0.5));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .grid-item:hover .overlay {
+    opacity: 1;
+  }
+</style>
