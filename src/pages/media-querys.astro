@@ -1,8 +1,8 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import LayoutWithNavbar from "@layouts/LayoutWithNavbar.astro";
 ---
 
-<Layout title="Media Queries Avanzadas | David Kurax">
+<LayoutWithNavbar title="Media Queries Avanzadas | David Kurax">
   <main>
     <h1>Media Queries</h1>
 
@@ -56,7 +56,7 @@ import Layout from "@layouts/Layout.astro";
 
     <a href="/">Volver al Inicio</a>
   </main>
-</Layout>
+</LayoutWithNavbar>
 
 <style>
   main {
@@ -114,8 +114,6 @@ import Layout from "@layouts/Layout.astro";
   a:hover {
     color: #1f6feb;
   }
-
-  /* Unidades dinámicas */
   :root {
     --vh: 1vh;
   }

@@ -1,0 +1,203 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<nav id="navbar" class="navbar">
+			<div class="menu-toggle" id="menu-toggle">
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+			</div>
+
+			<ul class="nav-links" id="nav-links">
+				<li><a href="/">Home</a></li>
+				<li><a href="#">CSS <small>pronto</small></a></li>
+				<li><a href="#">TypeScript <small>pronto</small></a></li>
+				<li><a href="#">GitHub <small>pronto</small></a></li>
+			</ul>
+		</nav>
+
+		<main class="content">
+			<slot />
+		</main>
+
+		<footer class="footer">
+			<p>
+				&copy; <span id="year"></span> - David
+			</p>
+		</footer>
+
+		<script>
+			let lastScrollTop = 0;
+			const navbar = document.getElementById('navbar');
+			const menuToggle = document.getElementById('menu-toggle');
+			const navLinks = document.getElementById('nav-links');
+
+			if (navbar) {
+				window.addEventListener('scroll', () => {
+					const scrollTop =
+						window.pageYOffset ||
+						document.documentElement.scrollTop;
+					if (scrollTop > lastScrollTop) {
+						navbar.classList.add('hidden');
+					} else {
+						navbar.classList.remove('hidden');
+					}
+					lastScrollTop = Math.max(scrollTop, 0);
+				});
+			}
+
+			if (menuToggle && navLinks) {
+				menuToggle.addEventListener('click', () => {
+					navLinks.classList.toggle('open');
+				});
+			}
+
+			const yearSpan = document.getElementById('year');
+			if (yearSpan) {
+				yearSpan.textContent = new Date().getFullYear().toString();
+			}
+		</script>
+	</body>
+</html>
+
+<style>
+	:global(body) {
+		margin: 0;
+		font-family: 'M PLUS Rounded 1c', sans-serif;
+		background-color: #0d1117;
+		color: #c9d1d9;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.navbar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 70px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: rgba(10, 10, 20, 0.8);
+		backdrop-filter: blur(10px);
+		box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+		z-index: 100;
+		transition:
+			transform 0.3s ease,
+			opacity 0.3s ease;
+	}
+
+	.navbar.hidden {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		gap: 5px;
+		cursor: pointer;
+		position: absolute;
+		right: 1rem;
+	}
+
+	.menu-toggle .bar {
+		width: 25px;
+		height: 3px;
+		background-color: white;
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 2rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.nav-links a {
+		text-decoration: none;
+		color: #c9d1d9;
+		font-size: 1.1rem;
+		transition: color 0.2s;
+	}
+
+	.nav-links a:hover {
+		color: #58a6ff;
+	}
+
+	.nav-links small {
+		font-size: 0.75rem;
+		color: #8b949e;
+	}
+
+	.content {
+		padding-top: 80px;
+		padding: 2rem;
+		flex: 1;
+		max-width: 800px;
+		margin: 0 auto;
+		box-sizing: border-box;
+	}
+
+	.footer {
+		padding: 1rem;
+		text-align: center;
+		background-color: rgba(13, 17, 23, 0.8);
+		backdrop-filter: blur(5px);
+		box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+	}
+
+	.footer p {
+		margin: 0;
+		color: #8b949e;
+		font-size: 1rem;
+	}
+
+	@media (max-width: 768px) {
+		.menu-toggle {
+			display: flex;
+		}
+
+		.nav-links {
+			display: none;
+			flex-direction: column;
+			align-items: center;
+			gap: 1.5rem;
+			position: absolute;
+			top: 70px;
+			left: 50%;
+			transform: translateX(-50%);
+			background-color: rgba(10, 10, 20, 0.9);
+			width: 100%;
+			padding: 1rem;
+		}
+
+		.nav-links.open {
+			display: flex;
+		}
+
+		.content {
+			padding: 1rem 0;
+			max-width: 100%;
+		}
+	}
+</style>
